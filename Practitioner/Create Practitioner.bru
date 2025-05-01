@@ -1,0 +1,157 @@
+meta {
+  name: Create Practitioner
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/Practitioner
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Practitioner",
+      "extension": [
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/extensions/practitioner-user-username",
+              "valueString": "jgeorge"
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/extensions/practitioner-personal-meeting-room-link",
+              "valueUrl": "https://meet.google.com/room-001"
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/extensions/practitioner-primary-practice-location",
+              "valueReference": {
+                  "reference": "Location/{{location_id}}"
+              }
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/extensions/practitioner-signature",
+              "valueAttachment": {
+                  "data": "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"
+              }
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/extensions/roles",
+              "extension": [
+                  {
+                      "url": "code",
+                      "valueCoding": {
+                          "system": "http://schemas.canvasmedical.com/fhir/roles",
+                          "code": "MD"
+                      }
+                  },
+                  {
+                      "url": "code",
+                      "valueCoding": {
+                          "system": "http://schemas.canvasmedical.com/fhir/roles",
+                          "code": "DO"
+                      }
+                  }
+              ]
+          }
+      ],
+      "identifier": [
+          {
+              "system": "http://hl7.org/fhir/sid/us-npi",
+              "value": "646460931"
+          }
+      ],
+      "name": [
+          {
+              "use": "usual",
+              "family": "George",
+              "given": [
+                  "Joshua"
+              ]
+          }
+      ],
+      "telecom": [
+          {
+              "system": "phone",
+              "value": "5558675309",
+              "use": "mobile",
+              "rank": 1
+          },
+          {
+              "system": "phone",
+              "value": "5551234567",
+              "use": "work",
+              "rank": 1
+          },
+          {
+              "system": "email",
+              "value": "jgeorge@example.net",
+              "use": "work",
+              "rank": 1
+          }
+      ],
+      "address": [
+          {
+              "use": "work",
+              "type": "both",
+              "line": [
+                  "428 Stephen Circles"
+              ],
+              "city": "North Alyssa",
+              "state": "HI",
+              "postalCode": "96693",
+              "country": "United States"
+          },
+          {
+              "use": "work",
+              "type": "both",
+              "line": [
+                  "59805 Raymond Terrace"
+              ],
+              "city": "West Bethhaven",
+              "state": "MA",
+              "postalCode": "89511",
+              "country": "United States"
+          }
+      ],
+      "birthDate": "1990-05-04",
+      "photo": [
+          {
+              "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Dr._Strangelove.png",
+              "title": "Profile photo 1"
+          },
+          {
+              "url": "https://images.halloweencostumes.com/products/82273/1-1/pet-doctor-costume.jpg"
+          }
+      ],
+      "qualification": [
+          {
+              "identifier": [
+                  {
+                      "system": "http://schemas.canvasmedical.com/fhir/extensions/issuing-authority-url",
+                      "value": "A60695"
+                  }
+              ],
+              "code": {
+                  "text": "License"
+              },
+              "period": {
+                  "start": "2020-01-01",
+                  "end": "2024-05-05"
+              },
+              "issuer": {
+                  "display": "MEDICAL BOARD OF MASSACHUSETTS (LONG NAME)",
+                  "extension": [
+                      {
+                          "url": "http://schemas.canvasmedical.com/fhir/extensions/issuing-authority-short-name",
+                          "valueString": "MEDICAL BOARD OF MASSACHUSETTS"
+                      }
+                  ]
+              }
+          }
+      ]
+  }
+}

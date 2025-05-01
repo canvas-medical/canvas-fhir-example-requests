@@ -1,0 +1,19 @@
+meta {
+  name: Search CareTeam - Practitioner
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/CareTeam?participant=Practitioner/{{practitioner_a_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  participant: Practitioner/{{practitioner_a_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

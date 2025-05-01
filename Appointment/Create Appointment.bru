@@ -1,0 +1,74 @@
+meta {
+  name: Create Appointment
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/Appointment
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Appointment",
+      "contained": [
+          {
+              "resourceType": "Endpoint",
+              "id": "appointment-meeting-endpoint",
+              "status": "active",
+              "connectionType": {},
+              "payloadType": [],
+              "address": "https://url-for-video-chat.example.com?meetingi=abc123"
+          }
+      ],
+      "identifier": [
+          {
+              "use": "usual",
+              "system": "ScheduleCo",
+              "value": "sched123"
+          }
+      ],
+      "status": "proposed",
+      "appointmentType": {
+          "coding": [
+              {
+                  "system": "http://snomed.info/sct",
+                  "code": "448337001",
+                  "display": "Telemedicine consultation with patient (procedure)"
+              }
+          ]
+      },
+      "description": "Weekly check-in.",
+      "supportingInformation": [
+          {
+              "reference": "Location/{{location_id}}"
+          },
+          {
+              "reference": "#appointment-meeting-endpoint",
+              "type": "Endpoint"
+          }
+      ],
+      "start": "2021-03-29T13:30:00.000Z",
+      "end": "2021-03-29T14:00:00.000Z",
+      "participant": [
+          {
+              "actor": {
+                  "reference": "Practitioner/{{practitioner_a_id}}"
+              },
+              "status": "accepted"
+          },
+          {
+              "actor": {
+                  "reference": "Patient/{{patient_id}}"
+              },
+              "status": "accepted"
+          }
+      ]
+  }
+}

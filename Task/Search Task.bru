@@ -1,0 +1,22 @@
+meta {
+  name: Search Task
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/Task
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~requester: Practitioner/{{practitioner_b_id}}
+  ~patient: Patient/{{patient_id}}
+  ~_id: Task/{{task_id}}
+  ~owner: Practitioner/{{practitioner_a_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

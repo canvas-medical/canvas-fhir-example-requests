@@ -1,0 +1,21 @@
+meta {
+  name: Search Encounter
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Encounter?patient=Patient/{{patient_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient: Patient/{{patient_id}}
+  ~appointment: e7f26cce-f0ff-4bc5-b779-5485c6641af4
+  ~date: lt2021-09-30
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

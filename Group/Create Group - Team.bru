@@ -1,0 +1,43 @@
+meta {
+  name: Create Group - Team
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/Group
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Group",
+      "type": "practitioner",
+      "actual": true,
+      "name": "A Test Team",
+      "characteristic": [
+          {
+              "exclude": false,
+              "code": {
+                  "text": "responsibility"
+              },
+              "valueCodeableConcept": {
+                  "text": "COLLECT_SPECIMENS_FROM_PATIENT"
+              }
+          }
+      ],
+      "member": [
+          {
+              "entity": {
+                  "reference": "Practitioner/{{practitioner_a_id}}",
+                  "type": "Practitioner"
+              }
+          }
+      ]
+  }
+}

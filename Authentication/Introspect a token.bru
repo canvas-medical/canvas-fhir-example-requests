@@ -1,0 +1,25 @@
+meta {
+  name: Introspect a token
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{emr_base_url}}/auth/introspect/?token=
+  body: formUrlEncoded
+  auth: bearer
+}
+
+params:query {
+  token: 
+}
+
+auth:bearer {
+  token: 
+}
+
+body:form-urlencoded {
+  ~grant_type: client_credentials
+  ~client_id: {{oauth_application_client_id}}
+  ~client_secret: {{oauth_application_client_secret}}
+}

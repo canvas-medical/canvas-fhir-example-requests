@@ -1,0 +1,33 @@
+meta {
+  name: Search Patient
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/Patient
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~identifier: http://canvasmedical.com|197047688
+  ~name: 
+  ~gender: 
+  ~family: 
+  ~given: 
+  ~nickname: 
+  ~birthdate: 
+  ~email: 
+  ~phone: 7143816145
+  ~_count: 2
+  ~_offset: 2
+  ~_id: {{patient_id}}
+  ~active: 
+  ~_has:CareTeam:participant:member: Practitioner/{{practitioner_a_id}}
+  ~_sort: given
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

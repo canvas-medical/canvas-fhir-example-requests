@@ -1,0 +1,15 @@
+meta {
+  name: Search Location
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Location
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

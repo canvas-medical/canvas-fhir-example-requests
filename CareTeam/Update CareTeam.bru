@@ -1,0 +1,58 @@
+meta {
+  name: Update CareTeam
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{base_url}}/CareTeam/{{careteam_id}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "CareTeam",
+      "subject": {
+          "reference": "Patient/{{careteam_id}}"
+      },
+      "participant": [
+          {
+              "role": [
+                  {
+                      "coding": [
+                          {
+                              "system": "http://snomed.info/sct",
+                              "code": "17561000",
+                              "display": "Cardiologist"
+                          }
+                      ]
+                  }
+              ],
+              "member": {
+                  "reference": "Practitioner/{{practitioner_a_id}}"
+              }
+          },
+          {
+              "role": [
+                  {
+                      "coding": [
+                          {
+                              "system": "http://snomed.info/sct",
+                              "code": "453231000124104",
+                              "display": "Primary care provider"
+                          }
+                      ]
+                  }
+              ],
+              "member": {
+                  "reference": "Practitioner/{{practitioner_b_id}}"
+              }
+          }
+      ]
+  }
+}

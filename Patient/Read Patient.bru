@@ -1,0 +1,19 @@
+meta {
+  name: Read Patient
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Patient/{{patient_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/fhir+json
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

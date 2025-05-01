@@ -1,0 +1,29 @@
+meta {
+  name: Search QuestionnaireResponse
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/QuestionnaireResponse
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~_id: 
+  ~_sort: 
+  ~authored: eq2021-09-01
+  ~authored: ge2021-09-16
+  ~authored: gt2021-09-16
+  ~authored: le2021-10-01
+  ~authored: lt2021-10-01
+  ~patient: Patient/{{patient_id}}
+  ~questionnaire: Questionnaire/{{questionnaire_id}}
+  ~questionnaire.code: 
+  ~questionnaire.item.code: 
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

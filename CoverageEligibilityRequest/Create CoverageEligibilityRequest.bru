@@ -1,0 +1,38 @@
+meta {
+  name: Create CoverageEligibilityRequest
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/CoverageEligibilityRequest
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "CoverageEligibilityRequest",
+      "status": "active",
+      "purpose": [
+          "benefits"
+      ],
+      "patient": {
+          "reference": "Patient/{{patient_id}}"
+      },
+      "created": "2024-02-13T02:53:00-04:00",
+      "insurer": {},
+      "insurance": [
+          {
+              "focal": true,
+              "coverage": {
+                  "reference": "Coverage/{{coverage_id}}"
+              }
+          }
+      ]
+  }
+}

@@ -1,0 +1,20 @@
+meta {
+  name: Search PaymentNotice
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/PaymentNotice
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~_id: 
+  ~request: Patient/{{patient_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

@@ -1,0 +1,21 @@
+meta {
+  name: Search Consent
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/Consent
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~_id: 
+  ~patient: Patient/{{patient_id}}
+  ~period: ge2022-05-01
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

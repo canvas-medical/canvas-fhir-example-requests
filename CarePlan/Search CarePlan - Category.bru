@@ -1,0 +1,19 @@
+meta {
+  name: Search CarePlan - Category
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/CarePlan?category=http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan
+  body: none
+  auth: bearer
+}
+
+params:query {
+  category: http://hl7.org/fhir/us/core/CodeSystem/careplan-category|assess-plan
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

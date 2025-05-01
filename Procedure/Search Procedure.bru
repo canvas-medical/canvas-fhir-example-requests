@@ -1,0 +1,20 @@
+meta {
+  name: Search Procedure
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Procedure?patient=Patient/{{patient_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient: Patient/{{patient_id}}
+  ~date: 
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

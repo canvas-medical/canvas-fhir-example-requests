@@ -1,0 +1,19 @@
+meta {
+  name: Search AllergyIntolerance
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/AllergyIntolerance?patient=Patient/{{patient_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient: Patient/{{patient_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

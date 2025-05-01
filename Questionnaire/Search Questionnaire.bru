@@ -1,0 +1,20 @@
+meta {
+  name: Search Questionnaire
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Questionnaire?code=711013002
+  body: none
+  auth: bearer
+}
+
+params:query {
+  code: 711013002
+  ~identifier: 123456
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

@@ -1,0 +1,49 @@
+meta {
+  name: Update Group - Team
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{base_url}}/Group/{{practitioner_group_id}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Group",
+      "type": "practitioner",
+      "actual": true,
+      "name": "A Test Team Changed",
+      "characteristic": [
+          {
+              "exclude": false,
+              "code": {
+                  "text": "responsibility"
+              },
+              "valueCodeableConcept": {
+                  "text": "COLLECT_SPECIMENS_FROM_PATIENT"
+              }
+          }
+      ],
+      "member": [
+          {
+              "entity": {
+                  "reference": "Practitioner/{{practitioner_a_id}}",
+                  "type": "Practitioner"
+              }
+          },
+          {
+              "entity": {
+                  "reference": "Practitioner/{{practitioner_b_id}}",
+                  "type": "Practitioner"
+              }
+          }
+      ]
+  }
+}

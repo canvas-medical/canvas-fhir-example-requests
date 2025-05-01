@@ -1,0 +1,159 @@
+meta {
+  name: Update Claim
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url}}/Claim/{{claim_id}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Claim",
+      "extension": [
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/extensions/claim-queue",
+              "valueCoding": {
+                  "system": "http://canvasmedical.com",
+                  "code": "NeedsClinicianReview",
+                  "display": "Clinician"
+              }
+          }
+      ],
+      "status": "active",
+      "type": {
+          "coding": [
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/claim-type",
+                  "code": "professional",
+                  "display": "Professional"
+              }
+          ]
+      },
+      "use": "claim",
+      "patient": {
+          "reference": "Patient/{{patient_id}}",
+          "type": "Patient"
+      },
+      "created": "2020-08-16",
+      "provider": {
+          "reference": "Practitioner/{{practitioner_a_id}}",
+          "type": "Practitioner"
+      },
+      "priority": {
+          "coding": [
+              {
+                  "system": "http://terminology.hl7.org/CodeSystem/processpriority",
+                  "code": "normal",
+                  "display": "Normal"
+              }
+          ]
+      },
+      "diagnosis": [
+          {
+              "sequence": 1,
+              "diagnosisCodeableConcept": {
+                  "coding": [
+                      {
+                          "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                          "code": "H9190",
+                          "display": "Unspecified hearing loss, unspecified ear"
+                      }
+                  ]
+              }
+          },
+          {
+              "sequence": 2,
+              "diagnosisCodeableConcept": {
+                  "coding": [
+                      {
+                          "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                          "code": "R0602",
+                          "display": "Shortness of breath"
+                      }
+                  ]
+              }
+          }
+      ],
+      "insurance": [
+          {
+              "sequence": 1,
+              "focal": true,
+              "coverage": {
+                  "reference": "Coverage/{{coverage_id}}",
+                  "type": "Coverage"
+              }
+          }
+      ],
+      "item": [
+          {
+              "sequence": 1,
+              "diagnosisSequence": [
+                  1,
+                  2
+              ],
+              "productOrService": {
+                  "coding": [
+                      {
+                          "system": "http://www.ama-assn.org/go/cpt",
+                          "code": "99213",
+                          "display": "OFFICE OUTPATIENT VISIT 15 MINUTES"
+                      }
+                  ]
+              },
+              "modifier": [
+                  {
+                      "coding": [
+                          {
+                              "system": "https://www.cms.gov/Medicare/Coding/HCPCSReleaseCodeSets",
+                              "code": "25"
+                          }
+                      ]
+                  }
+              ],
+              "servicedDate": "2023-12-05",
+              "quantity": {
+                  "value": 1
+              },
+              "unitPrice": {
+                  "value": 100.0
+              },
+              "net": {
+                  "value": 100.0
+              }
+          },
+          {
+              "sequence": 2,
+              "diagnosisSequence": [
+                  2
+              ],
+              "productOrService": {
+                  "coding": [
+                      {
+                          "system": "http://www.ama-assn.org/go/cpt",
+                          "code": "90715",
+                          "display": "TDAP VACCINE 7 YRS/> IM"
+                      }
+                  ]
+              },
+              "servicedDate": "2023-12-05",
+              "quantity": {
+                  "value": 1
+              },
+              "unitPrice": {
+                  "value": 0.0
+              },
+              "net": {
+                  "value": 0
+              }
+          }
+      ]
+  }
+}

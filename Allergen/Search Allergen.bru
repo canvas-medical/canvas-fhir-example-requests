@@ -1,0 +1,24 @@
+meta {
+  name: Search Allergen
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Allergen
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~code: 
+  ~_text: 
+}
+
+headers {
+  Content-Type: application/fhir+json
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

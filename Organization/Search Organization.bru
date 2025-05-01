@@ -1,0 +1,21 @@
+meta {
+  name: Search Organization
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Organization
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~_id: 
+  ~name: Canvas
+  ~address: 
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

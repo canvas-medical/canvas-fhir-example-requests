@@ -1,0 +1,15 @@
+meta {
+  name: Read Device
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/Device/{{device_id}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

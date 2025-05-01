@@ -1,0 +1,53 @@
+meta {
+  name: Create Observation - panel
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/Observation
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "category": [
+          {
+              "coding": [
+                  {
+                      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                      "code": "vital-signs",
+                      "display": "Vital Signs"
+                  }
+              ]
+          }
+      ],
+      "code": {
+          "coding": [
+              {
+                  "system": "http://loinc.org",
+                  "code": "85353-1",
+                  "display": "Vital Panel"
+              }
+          ]
+      },
+      "status": "unknown",
+      "subject": {
+          "reference": "Patient/{{patient_id}}"
+      },
+      "effectiveDateTime": "2022-08-29T08:50:24.883809+00:00",
+      "hasMember": [
+          {
+              "reference": "Observation/{{observation_id}}"
+          },
+          {
+              "reference": "Observation/{{observation_id}}"
+          }
+      ]
+  }
+}

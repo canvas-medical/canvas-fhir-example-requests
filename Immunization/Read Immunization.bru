@@ -1,0 +1,19 @@
+meta {
+  name: Read Immunization
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/Immunization/{{immunization_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/fhir+json
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

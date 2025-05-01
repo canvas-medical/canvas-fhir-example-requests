@@ -1,0 +1,15 @@
+meta {
+  name: Read Group
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/Group/{{person_group_id}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

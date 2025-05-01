@@ -1,0 +1,32 @@
+meta {
+  name: Create PaymentNotice
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/PaymentNotice
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "PaymentNotice",
+      "status": "active",
+      "request": {
+          "reference": "Patient/5350cd20de8a470aa570a852859ac87e"
+      },
+      "created": "2014-08-16",
+      "payment": {},
+      "recipient": {},
+      "amount": {
+          "value": 10.00,
+          "currency": "USD"
+      }
+  }
+}

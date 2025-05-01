@@ -1,0 +1,20 @@
+meta {
+  name: Search Medication
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Medication
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~code: http://www.nlm.nih.gov/research/umls/rxnorm|1092189
+  ~_text: tylenol
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

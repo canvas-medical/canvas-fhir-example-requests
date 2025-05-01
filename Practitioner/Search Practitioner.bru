@@ -1,0 +1,24 @@
+meta {
+  name: Search Practitioner
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/Practitioner
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~include-non-scheduleable-practitioners: true
+  ~name: null
+}
+
+headers {
+  Content-Type: application/fhir+json
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

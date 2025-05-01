@@ -1,0 +1,19 @@
+meta {
+  name: Search Condition
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/Condition?patient=Patient/{{patient_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient: Patient/{{patient_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

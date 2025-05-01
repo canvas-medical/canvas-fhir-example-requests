@@ -1,0 +1,15 @@
+meta {
+  name: Read AllergyIntolerance
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/AllergyIntolerance/{{allergyintolerance_id}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

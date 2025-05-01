@@ -1,0 +1,20 @@
+meta {
+  name: Search Claim
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/Claim
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~_id: 
+  ~patient: Patient/{{patient_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

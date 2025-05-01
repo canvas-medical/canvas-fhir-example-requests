@@ -1,0 +1,119 @@
+meta {
+  name: Canvas FHIR
+}
+
+auth {
+  mode: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+vars:pre-request {
+  allergen_id: 
+  allergyintolerance_id: 
+  appointment_id: 
+  careplan_id: 
+  careteam_id: 
+  claim_id: 
+  communication_id: 
+  condition_id: 
+  consent_id: 
+  coverage_id: 
+  coverageeligibilityrequest_id: 
+  coverageeligibilityresponse_id: 
+  detectedissue_id: 
+  device_id: 
+  diagnosticreport_id: 
+  documentreference_id: 
+  encounter_id: 
+  goal_id: 
+  immunization_id: 
+  location_id: 
+  media_id: 
+  medication_id: 
+  medicationrequest_id: 
+  medicationstatement_id: 
+  observation_id: 
+  organization_id: 
+  patient_id: 
+  paymentnotice_id: 
+  person_group_id: 
+  practitioner_a_id: 
+  practitioner_b_id: 
+  practitioner_group_id: 
+  procedure_id: 
+  questionnaire_id: 
+  questionnaireresponse_id: 
+  schedule_id: 
+  task_id: 
+}
+
+script:pre-request {
+  // Note: If no environment is set, then environment variables act like local variables, which fall
+  //       out of scope after the request. The token is stored as an environment variable, so this
+  //       results in the token having to be fetched before every request, because it was not saved
+  //       after the previous request. Set your environment!
+  
+  var moment = require('moment');
+  var now = moment();
+  
+  // Get the token and the expiration datetime
+  var token = bru.getEnvVar("fhir_access_token");
+  var token_expiration_datetime = bru.getEnvVar("fhir_access_token_expiration_datetime");
+  if(token_expiration_datetime != null) {
+      token_expiration_datetime = moment(token_expiration_datetime);
+  }
+  
+  // See if the token is unavailable or expired
+  if(token == null || token_expiration_datetime == null ||  now > token_expiration_datetime) {
+      // Send a request to get a new token
+      const axios = require("axios");
+      const data = {
+        grant_type: "client_credentials",
+        client_id: bru.getEnvVar("oauth_application_client_id"),
+        client_secret: bru.getEnvVar("oauth_application_client_secret")
+      }
+  
+      const response = await axios.post(
+        bru.getEnvVar("emr_base_url") + "/auth/token/",
+        data,
+        {
+          headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+          }
+        }
+      ).then(
+        function (response) {
+        // Save the new token and token expiration datetime
+          bru.setEnvVar("fhir_access_token", response.data.access_token);
+          bru.setEnvVar("fhir_access_token_expiration_datetime", now.add(response.data.expires_in, "seconds"));
+        }
+      )
+  }
+  
+}
+
+script:post-response {
+  // If the last request was unauthorized, invalidate the saved token
+  if(res.getStatus() == 401) {
+    bru.setEnvVar("fhir_access_token", null);
+  }
+  
+}
+
+docs {
+  Testing this collection requires access to a Canvas environment. If you don't have access to one, get access here: [https://www.canvasmedical.com/emrs/developer-sandbox](https://www.canvasmedical.com/emrs/developer-sandbox)
+  
+  **Make sure to replace the** ***collection*** **variables with resource ids taken from your environment.  
+  There are also the following** ***environment*** **variables to edit:**
+  
+  *   **oauth_application_client_id**
+  *   **oauth_application_client_secret**
+  *   **emr_base_url** (http://yoursandbox.canvasmedical.com)
+  *   **base_url** (http://fumage-yoursandbox.canvasmedical.com)
+  
+  More documentation on each endpoint in this collection can be found at  
+  [https://docs.canvasmedical.com/api/](https://docs.canvasmedical.com/api/)
+}

@@ -1,0 +1,24 @@
+meta {
+  name: Search DocumentReference
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/DocumentReference?status=current&type=http://loinc.org|94093-2
+  body: none
+  auth: bearer
+}
+
+params:query {
+  status: current
+  type: http://loinc.org|94093-2
+  ~date: eq2021-09-09
+  ~subject: Patient/{{patient_id}}
+  ~_id: 0519f726-378f-46ab-85d1-6ab41c110ebf
+  ~category: 
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

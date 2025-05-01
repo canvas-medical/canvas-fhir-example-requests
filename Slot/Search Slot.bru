@@ -1,0 +1,26 @@
+meta {
+  name: Search Slot
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/Slot?schedule=Schedule/{{schedule_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  schedule: Schedule/{{schedule_id}}
+  ~start: null
+  ~duration: 30
+  ~end: null
+}
+
+headers {
+  Content-Type: application/fhir+json
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

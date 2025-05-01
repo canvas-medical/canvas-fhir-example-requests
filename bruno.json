@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Canvas FHIR",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

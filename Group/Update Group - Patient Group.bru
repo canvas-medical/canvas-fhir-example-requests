@@ -1,0 +1,33 @@
+meta {
+  name: Update Group - Patient Group
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{base_url}}/Group/{{person_group_id}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Group",
+      "type": "person",
+      "actual": true,
+      "name": "A different Patient Group",
+      "member": [
+          {
+              "entity": {
+                  "reference": "Patient/{{patient_id}}",
+                  "type": "Patient"
+              },
+              "inactive": false
+          }
+      ]
+  }
+}

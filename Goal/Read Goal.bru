@@ -1,0 +1,15 @@
+meta {
+  name: Read Goal
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/Goal/{{goal_id}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

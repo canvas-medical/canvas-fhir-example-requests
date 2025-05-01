@@ -1,0 +1,64 @@
+meta {
+  name: Create Task
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/Task
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Task",
+      "extension": [
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/extensions/task-group",
+              "valueReference": {
+                  "reference": "Group/{{group_id}}"
+              }
+          }
+      ],
+      "status": "requested",
+      "intent": "unknown",
+      "description": "Test title for task from Postman FHIR request",
+      "for": {
+          "reference": "Patient/{{patient_id}}"
+      },
+      "authoredOn": "2021-12-16T17:10:42.625873+00:00",
+      "requester": {
+          "reference": "Practitioner/{{practitioner_a_id}}"
+      },
+      "owner": {
+          "reference": "Practitioner/{{practitioner_a_id}}"
+      },
+      "note": [
+          {
+              "authorReference": {
+                  "reference": "Practitioner/{{practitioner_a_id}}"
+              },
+              "time": "2021-12-16T17:10:42.628451+00:00",
+              "text": "Let us create a new comment with more fields!"
+          }
+      ],
+      "input": [
+          {
+              "type": {
+                  "text": "label"
+              },
+              "valueString": "Urgent"
+          }
+      ],
+      "restriction": {
+          "period": {
+              "end": "2022-08-01T04:00:00+00:00"
+          }
+      }
+  }
+}

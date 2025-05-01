@@ -1,0 +1,32 @@
+meta {
+  name: Create Group - Patient Group
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/Group
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Group",
+      "type": "person",
+      "actual": true,
+      "name": "A Test Patient Group",
+      "member": [
+          {
+              "entity": {
+                  "reference": "Patient/{{patient_id}}",
+                  "type": "Patient"
+              }
+          }
+      ]
+  }
+}

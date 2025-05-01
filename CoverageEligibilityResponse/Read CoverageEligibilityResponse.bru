@@ -1,0 +1,15 @@
+meta {
+  name: Read CoverageEligibilityResponse
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/CoverageEligibilityResponse/{{coverageeligibilityresponse_id}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

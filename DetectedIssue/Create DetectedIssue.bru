@@ -1,0 +1,82 @@
+meta {
+  name: Create DetectedIssue
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/DetectedIssue
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "DetectedIssue",
+      "identifier": [
+          {
+              "system": "http://external.identifier.system/url",
+              "value": "080abebd"
+          }
+      ],
+      "status": "preliminary",
+      "code": {
+          "coding": [
+              {
+                  "system": "https://terminology.hl7.org/CodeSystem/v3-ActCode",
+                  "code": "CODINGGAP",
+                  "display": "Codinggap"
+              }
+          ],
+          "text": "Codinggap"
+      },
+      "severity": "moderate",
+      "patient": {
+          "reference": "Patient/{{patient_id}}",
+          "type": "Patient"
+      },
+      "identifiedDateTime": "2024-08-10T14:23:08+00:00",
+      "author": {
+          "reference": "Practitioner/{{practitioner_a_id}}",
+          "type": "Practitioner"
+      },
+      "evidence": [
+          {
+              "code": [
+                  {
+                      "coding": [
+                          {
+                              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+                              "code": "V97.21XS",
+                              "display": "Parachutist entangled in object, sequela"
+                          }
+                      ]
+                  }
+              ]
+          }
+      ],
+      "detail": "Detail for detected issue",
+      "reference": "https://example.com",
+      "mitigation": [
+          {
+              "action": {
+                  "coding": [
+                      {
+                          "system": "https://schemas.canvasmedical.com/fhir/detectedissue-mitigation-action",
+                          "code": "valid"
+                      }
+                  ]
+              },
+              "date": "2024-08-09T14:23:08+00:00",
+              "author": {
+                  "reference": "Practitioner/{{practitioner_b_id}}",
+                  "type": "Practitioner"
+              }
+          }
+      ]
+  }
+}

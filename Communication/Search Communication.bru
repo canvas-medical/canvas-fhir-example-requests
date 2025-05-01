@@ -1,0 +1,22 @@
+meta {
+  name: Search Communication
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/Communication
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~_id: {{communication_id}}
+  ~patient: {{patient_id}}
+  ~recipient: Patient/{{patient_id}}
+  ~sender: Practitioner/{{practitioner_a_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

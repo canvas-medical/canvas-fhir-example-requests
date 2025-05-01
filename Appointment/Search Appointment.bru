@@ -1,0 +1,28 @@
+meta {
+  name: Search Appointment
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/Appointment
+  body: json
+  auth: bearer
+}
+
+params:query {
+  ~_id: 
+  ~_sort: patient
+  ~appointment-type: 
+  ~date: ge2022-02-24
+  ~date: eq2022-02-24
+  ~date: lt2022-02-24
+  ~location: 
+  ~practitioner: Practitioner/{{practitioner_a_id}}
+  ~patient: Patient/{{patient_id}}
+  ~status: 
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

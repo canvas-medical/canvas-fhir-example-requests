@@ -1,0 +1,27 @@
+meta {
+  name: Add activity log item
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/Claim/{{claim_id}}/$add-activity-log-item
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "Parameters",
+      "parameter": [
+          {
+              "name": "comment",
+              "valueString": "Comment added to claim activity log"
+          }
+      ]
+  }
+}

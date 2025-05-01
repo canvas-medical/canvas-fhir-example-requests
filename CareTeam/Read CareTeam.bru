@@ -1,0 +1,19 @@
+meta {
+  name: Read CareTeam
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/CareTeam/{{careteam_id}}
+  body: none
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/fhir+json
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

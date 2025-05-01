@@ -1,0 +1,88 @@
+meta {
+  name: Create DocumentReference
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/DocumentReference
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+      "resourceType": "DocumentReference",
+      "extension": [
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/document-reference-comment",
+              "valueString": "Some comment on Document"
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/document-reference-clinical-date",
+              "valueDate": "2024-04-01"
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/document-reference-review-mode",
+              "valueCode": "RN"
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/document-reference-reviewer",
+              "valueReference": {
+                  "reference": "Practitioner/{{practitioner_a_id}}",
+                  "type": "Practitioner"
+              }
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/document-reference-priority",
+              "valueBoolean": true
+          },
+          {
+              "url": "http://schemas.canvasmedical.com/fhir/document-reference-requires-signature",
+              "valueBoolean": true
+          }
+      ],
+      "status": "current",
+      "type": {
+          "coding": [
+              {
+                  "system": "http://loinc.org",
+                  "code": "34109-9"
+              }
+          ]
+      },
+      "category": [
+          {
+              "coding": [
+                  {
+                      "system": "http://schemas.canvasmedical.com/fhir/document-reference-category",
+                      "code": "uncategorizedclinicaldocument"
+                  }
+              ]
+          }
+      ],
+      "subject": {
+          "reference": "Patient{{patient_id}}",
+          "type": "Patient"
+      },
+      "author": [
+          {
+              "reference": "Practitioner/{{practitioner_a_id}}",
+              "type": "Practitioner"
+          }
+      ],
+      "description": "Uncategorized Clinical Document",
+      "content": [
+          {
+              "attachment": {
+                  "contentType": "application/pdf",
+                  "data": "JVBERi0xLjIgCjkgMCBvYmoKPDwKPj4Kc3RyZWFtCkJULyAzMiBUZiggIFlPVVIgVEVYVCBIRVJFICAgKScgRVQKZW5kc3RyZWFtCmVuZG9iago0IDAgb2JqCjw8Ci9UeXBlIC9QYWdlCi9QYXJlbnQgNSAwIFIKL0NvbnRlbnRzIDkgMCBSCj4+CmVuZG9iago1IDAgb2JqCjw8Ci9LaWRzIFs0IDAgUiBdCi9Db3VudCAxCi9UeXBlIC9QYWdlcwovTWVkaWFCb3ggWyAwIDAgMjUwIDUwIF0KPj4KZW5kb2JqCjMgMCBvYmoKPDwKL1BhZ2VzIDUgMCBSCi9UeXBlIC9DYXRhbG9nCj4+CmVuZG9iagp0cmFpbGVyCjw8Ci9Sb290IDMgMCBSCj4+CiUlRU9G"
+              }
+          }
+      ]
+  }
+}

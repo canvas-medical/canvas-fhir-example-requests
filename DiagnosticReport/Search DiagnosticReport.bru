@@ -1,0 +1,22 @@
+meta {
+  name: Search DiagnosticReport
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/DiagnosticReport?patient={{patient_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient: {{patient_id}}
+  ~date: ge2022-06-07
+  ~category: 
+  ~code: 
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

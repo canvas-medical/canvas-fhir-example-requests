@@ -1,0 +1,22 @@
+meta {
+  name: Search DetectedIssue
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/DetectedIssue?_id={{detectedissue_id}}&patient=Patient/{{patient_id}}&status=preliminary&identified=lt2024-08-11
+  body: none
+  auth: bearer
+}
+
+params:query {
+  _id: {{detectedissue_id}}
+  patient: Patient/{{patient_id}}
+  status: preliminary
+  identified: lt2024-08-11
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}

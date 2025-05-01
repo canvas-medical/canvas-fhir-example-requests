@@ -1,0 +1,19 @@
+meta {
+  name: Search Group
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/Group?type=person
+  body: none
+  auth: bearer
+}
+
+params:query {
+  type: person
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
