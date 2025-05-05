@@ -1,12 +1,12 @@
 vars {
-  api_server: fumage-example.canvasmedical.com
-  base_url: https://{{api_server}}
-  emr_base_url: https://example.canvasmedical.com
+  customer_identifier: 
+  domain: {{customer_identifier}}.canvasmedical.com
+  base_url: https://fumage-{{domain}}
+  emr_base_url: https://{{domain}}
   oauth_application_client_id: 
   fhir_access_token_expiration_datetime: 
-  patient_id: 
-  fhir_access_token: 
 }
 vars:secret [
-  oauth_application_client_secret
+  oauth_application_client_secret,
+  fhir_access_token
 ]
