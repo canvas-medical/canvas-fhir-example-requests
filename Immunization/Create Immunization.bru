@@ -1,0 +1,44 @@
+meta {
+  name: Create Immunization
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/Immunization
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/sid/cvx",
+          "code": "40",
+          "display": "rabies, intradermal injection"
+        },
+        {
+          "system": "http://www.ama-assn.org/go/cpt",
+          "code": "90676",
+          "display": "RABIES VACCINE INTRADERMAL"
+        }
+      ]
+    },
+    "patient": {
+      "reference": "Patient/{{patient_id}}"
+    },
+    "encounter": {
+      "reference": "Encounter/{{encounter_id}}"
+    },
+    "occurrenceDateTime": "2024-08-01",
+    "primarySource": false
+  }
+}
