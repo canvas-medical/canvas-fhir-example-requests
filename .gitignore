@@ -3,3 +3,6 @@
 *.sw?
 
 environments/*.bru
+
+# JetBrains
+.idea/
