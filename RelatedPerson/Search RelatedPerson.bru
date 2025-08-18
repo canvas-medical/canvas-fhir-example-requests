@@ -1,0 +1,20 @@
+meta {
+  name: Search RelatedPerson
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/RelatedPerson
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~patient: Patient/{{patient_id}}
+  ~_id: {{relatedperson_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
