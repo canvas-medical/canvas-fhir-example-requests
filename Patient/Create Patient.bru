@@ -23,6 +23,10 @@ body:json {
         "valueCode": "M"
       },
       {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-sex",
+        "valueCode": "248153007"
+      },
+      {
         "url": "http://schemas.canvasmedical.com/fhir/extensions/preferred-pharmacy",
         "extension": [
           {
@@ -53,16 +57,29 @@ body:json {
         ]
       },
       {
+        "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-tribal-affiliation",
+        "extension": [
+          {
+            "url": "tribalAffiliation",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.hl7.org/CodeSystem/v3-TribalEntityUS",
+                  "code": "187",
+                  "display": "Paiute-Shoshone Tribe of the Fallon Reservation and Colony, Nevada"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
         "url": "http://hl7.org/fhir/StructureDefinition/tz-code",
         "valueCode": "America/New_York"
       },
       {
         "url": "http://schemas.canvasmedical.com/fhir/extensions/clinical-note",
         "valueString": "I am a clinical caption from a Create message"
-      },
-      {
-        "url": "http://schemas.canvasmedical.com/fhir/extensions/administrative-note",
-        "valueString": "I am an administrative caption from a Create message"
       }
     ],
     "identifier": [
