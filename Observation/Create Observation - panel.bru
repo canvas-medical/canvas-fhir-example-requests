@@ -16,38 +16,39 @@ auth:bearer {
 
 body:json {
   {
-      "category": [
+    "resourceType": "Observation",
+    "status": "unknown",
+    "category": [
+      {
+        "coding": [
           {
-              "coding": [
-                  {
-                      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                      "code": "vital-signs",
-                      "display": "Vital Signs"
-                  }
-              ]
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "vital-signs",
+            "display": "Vital Signs"
           }
-      ],
-      "code": {
-          "coding": [
-              {
-                  "system": "http://loinc.org",
-                  "code": "85353-1",
-                  "display": "Vital Panel"
-              }
-          ]
-      },
-      "status": "unknown",
-      "subject": {
-          "reference": "Patient/{{patient_id}}"
-      },
-      "effectiveDateTime": "2022-08-29T08:50:24.883809+00:00",
-      "hasMember": [
-          {
-              "reference": "Observation/{{observation_id}}"
-          },
-          {
-              "reference": "Observation/{{observation_id}}"
-          }
+        ]
+      }
+    ],
+    "code": {
+      "coding": [
+        {
+          "system": "http://loinc.org",
+          "code": "85353-1",
+          "display": "Vital Panel"
+        }
       ]
+    },
+    "subject": {
+      "reference": "Patient/{{patient_id}}"
+    },
+    "effectiveDateTime": "2022-08-29T08:50:24.883809+00:00",
+    "hasMember": [
+      {
+        "reference": "Observation/{{observation_id}}"
+      },
+      {
+        "reference": "Observation/{{observation_id}}"
+      }
+    ]
   }
 }

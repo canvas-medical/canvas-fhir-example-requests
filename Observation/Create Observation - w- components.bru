@@ -16,65 +16,66 @@ auth:bearer {
 
 body:json {
   {
-      "category": [
+    "resourceType": "Observation",
+    "status": "unknown",
+    "category": [
+      {
+        "coding": [
           {
-              "coding": [
-                  {
-                      "system": "http://terminology.hl7.org/CodeSystem/observation-category",
-                      "code": "vital-signs",
-                      "display": "Vital Signs"
-                  }
-              ]
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "vital-signs",
+            "display": "Vital Signs"
           }
-      ],
-      "code": {
-          "coding": [
-              {
-                  "system": "http://loinc.org",
-                  "code": "85354-9",
-                  "display": "BP"
-              }
-          ]
-      },
-      "component": [
-          {
-              "code": {
-                  "coding": [
-                      {
-                          "system": "http://loinc.org",
-                          "code": "8480-6",
-                          "display": "BP - Systolic"
-                      }
-                  ]
-              },
-              "valueQuantity": {
-                  "value": 100
-              }
-          },
-          {
-              "code": {
-                  "coding": [
-                      {
-                          "system": "http://loinc.org",
-                          "code": "8462-4",
-                          "display": "BP - Diastole"
-                      }
-                  ]
-              },
-              "valueQuantity": {
-                  "value": 80
-              }
-          }
-      ],
-      "status": "unknown",
-      "subject": {
-          "reference": "Patient/{{patient_id}}"
-      },
-      "effectiveDateTime": "2022-06-01T08:50:24.883809+00:00",
-      "derivedFrom": [
-          {
-              "reference": "Observation/{{observation_id}}"
-          }
+        ]
+      }
+    ],
+    "code": {
+      "coding": [
+        {
+          "system": "http://loinc.org",
+          "code": "85354-9",
+          "display": "BP"
+        }
       ]
+    },
+    "subject": {
+      "reference": "Patient/{{patient_id}}"
+    },
+    "effectiveDateTime": "2022-06-01T08:50:24.883809+00:00",
+    "derivedFrom": [
+      {
+        "reference": "Observation/{{observation_id}}"
+      }
+    ],
+    "component": [
+      {
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8480-6",
+              "display": "BP - Systolic"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 100
+        }
+      },
+      {
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8462-4",
+              "display": "BP - Diastole"
+            }
+          ]
+        },
+        "valueQuantity": {
+          "value": 80
+        }
+      }
+    ]
   }
 }
