@@ -12,11 +12,9 @@ get {
 
 params:query {
   patient: Patient/{{patient_id}}
-  ~interaction: search-type
-  ~subscriberid: 1234
+  ~identifier: 1234
   ~status: active
   ~_count: 1
-  ~_offset: 0
 }
 
 auth:bearer {

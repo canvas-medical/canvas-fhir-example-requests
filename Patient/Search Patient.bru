@@ -21,10 +21,9 @@ params:query {
   ~email: 
   ~phone: 7143816145
   ~_count: 2
-  ~_offset: 2
   ~_id: {{patient_id}}
   ~active: 
-  ~_has:CareTeam:participant:member: Practitioner/{{practitioner_a_id}}
+  ~_has: CareTeam:participant:member: Practitioner/{{practitioner_a_id}}
   ~_sort: given
 }
 

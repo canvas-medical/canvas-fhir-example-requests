@@ -20,91 +20,104 @@ auth:bearer {
 
 body:json {
   {
-      "resourceType": "Coverage",
-      "order": 1,
-      "status": "active",
-      "type": {
+    "resourceType": "Coverage",
+    "identifier": [
+      {
+        "type": {
           "coding": [
-              {
-                  "system": "http://hl7.org/fhir/ValueSet/coverage-type",
-                  "code": "MILITARY",
-                  "display": "military health programs"
-              }
-          ],
-          "text": "Military"
-      },
-      "subscriber": {
-          "reference": "Patient/{{patient_id}}"
-      },
-      "subscriberId": "1234",
-      "beneficiary": {
-          "reference": "Patient/{{patient_id}}"
-      },
-      "relationship": {
-          "coding": [
-              {
-                  "system": "http://hl7.org/fhir/ValueSet/subscriber-relationship",
-                  "code": "self"
-              }
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MB",
+              "display": "Member Number"
+            }
           ]
-      },
-      "period": {
-          "start": "2021-06-27"
-      },
-      "payor": [
-          {
-              "identifier": {
-                  "system": "https://www.claim.md/services/era/",
-                  "value": "AMM03"
-              },
-              "display": "Independence Blue Cross Blue Shield"
-          }
+        },
+        "value": "1234"
+      }
+    ],
+    "status": "active",
+    "type": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/ValueSet/coverage-type",
+          "code": "MILITARY",
+          "display": "military health programs"
+        }
       ],
-      "class": [
-          {
-              "type": {
-                  "coding": [
-                      {
-                          "system": "http://hl7.org/fhir/ValueSet/coverage-class",
-                          "code": "group"
-                      }
-                  ]
-              },
-              "value": "Captains Only"
-          },
-          {
-              "type": {
-                  "coding": [
-                      {
-                          "system": "http://hl7.org/fhir/ValueSet/coverage-class",
-                          "code": "plan"
-                      }
-                  ]
-              },
-              "value": "Starfleet HMO"
-          },
-          {
-              "type": {
-                  "coding": [
-                      {
-                          "system": "http://hl7.org/fhir/ValueSet/coverage-class",
-                          "code": "subplan"
-                      }
-                  ]
-              },
-              "value": "Starfleet HMO Subplan 3"
-          },
-          {
-              "type": {
-                  "coding": [
-                      {
-                          "system": "http://hl7.org/fhir/ValueSet/coverage-class",
-                          "code": "subgroup"
-                      }
-                  ]
-              },
-              "value": "Subgroup 2"
-          }
+      "text": "Military"
+    },
+    "subscriber": {
+      "reference": "Patient/{{patient_id}}"
+    },
+    "beneficiary": {
+      "reference": "Patient/{{patient_id}}"
+    },
+    "relationship": {
+      "coding": [
+        {
+          "system": "http://hl7.org/fhir/ValueSet/subscriber-relationship",
+          "code": "self"
+        }
       ]
+    },
+    "period": {
+      "start": "2021-06-27"
+    },
+    "payor": [
+      {
+        "identifier": {
+          "system": "https://www.claim.md/services/era/",
+          "value": "AMM03"
+        },
+        "display": "Independence Blue Cross Blue Shield"
+      }
+    ],
+    "class": [
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/coverage-class",
+              "code": "group"
+            }
+          ]
+        },
+        "value": "Captains Only"
+      },
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/coverage-class",
+              "code": "plan"
+            }
+          ]
+        },
+        "value": "Starfleet HMO"
+      },
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/coverage-class",
+              "code": "subplan"
+            }
+          ]
+        },
+        "value": "Starfleet HMO Subplan 3"
+      },
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/coverage-class",
+              "code": "subgroup"
+            }
+          ]
+        },
+        "value": "Subgroup 2"
+      }
+    ],
+    "order": 1
   }
 }
