@@ -1,0 +1,20 @@
+meta {
+  name: Search Specimen
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Specimen
+  body: none
+  auth: bearer
+}
+
+params:query {
+  ~_id: {{specimen_id}}
+  ~patient: Patient/{{patient_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
