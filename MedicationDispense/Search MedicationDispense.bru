@@ -5,14 +5,13 @@ meta {
 }
 
 get {
-  url: {{base_url}}/MedicationDispense?patient=Patient/{{patient_id}}&performer=Practitioner/{{practitioner_a_id}}
+  url: {{base_url}}/MedicationDispense?patient=Patient/{{patient_id}}
   body: none
   auth: bearer
 }
 
 params:query {
   patient: Patient/{{patient_id}}
-  performer: Practitioner/{{practitioner_a_id}}
 }
 
 auth:bearer {
