@@ -12,6 +12,7 @@ get {
 
 params:query {
   patient: Patient/{{patient_id}}
+  ~category: http://terminology.hl7.org/CodeSystem/condition-category|health-concern
 }
 
 auth:bearer {
