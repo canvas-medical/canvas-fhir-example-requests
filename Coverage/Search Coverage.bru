@@ -13,8 +13,8 @@ get {
 params:query {
   patient: Patient/{{patient_id}}
   ~identifier: 1234
+  ~subscriberid: 123
   ~status: active
-  ~_count: 1
 }
 
 auth:bearer {
