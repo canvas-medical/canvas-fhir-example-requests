@@ -1,0 +1,15 @@
+meta {
+  name: Read MedicationDispense
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/MedicationDispense/{{medicationdispense_id}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
