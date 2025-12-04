@@ -1,20 +1,17 @@
 meta {
-  name: Search Coverage
+  name: Search MedicationDispense
   type: http
-  seq: 4
+  seq: 2
 }
 
 get {
-  url: {{base_url}}/Coverage?patient=Patient/{{patient_id}}
+  url: {{base_url}}/MedicationDispense?patient=Patient/{{patient_id}}
   body: none
   auth: bearer
 }
 
 params:query {
   patient: Patient/{{patient_id}}
-  ~identifier: 1234
-  ~subscriberid: 123
-  ~status: active
 }
 
 auth:bearer {
