@@ -1,0 +1,21 @@
+meta {
+  name: Search Provenance
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/Provenance?patient=Patient/{{patient_id}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  patient: Patient/{{patient_id}}
+  ~target: Observation/{{observation_id}}
+  ~agent: Practitioner/{{practitioner_a_id}}
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
