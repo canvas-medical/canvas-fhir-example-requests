@@ -17,7 +17,7 @@ auth:bearer {
 body:json {
   {
       "resourceType": "QuestionnaireResponse",
-      "questionnaire": "Questionnaire/{{questionnaire_id}}",
+      "questionnaire": "https://fumage-<CUSTOMER-ID>.canvasmedical.com/Questionnaire/{{questionnaire_id}}",
       "status": "entered-in-error",
       "subject": {
           "reference": "Patient/{{patient_id}}",
