@@ -17,7 +17,7 @@ auth:bearer {
 body:json {
   {
       "resourceType": "QuestionnaireResponse",
-      "questionnaire": "https://fumage-<CUSTOMER-ID>.canvas.medical.com/Questionnaire/{{questionnaire_id}}",
+      "questionnaire": "Questionnaire/{{questionnaire_id}}",
       "status": "completed",
       "subject": {
           "reference": "Patient/{{patient_id}}",
