@@ -7,13 +7,9 @@ meta {
 get {
   url: {{base_url}}/Allergen/{{allergen_id}}
   body: none
-  auth: bearer
+  auth: inherit
 }
 
 headers {
   Content-Type: application/fhir+json
-}
-
-auth:bearer {
-  token: {{fhir_access_token}}
 }

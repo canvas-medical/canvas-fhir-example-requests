@@ -7,7 +7,7 @@ meta {
 get {
   url: {{base_url}}/DetectedIssue?_id={{detectedissue_id}}&patient=Patient/{{patient_id}}&status=preliminary&identified=lt2024-08-11
   body: none
-  auth: bearer
+  auth: inherit
 }
 
 params:query {

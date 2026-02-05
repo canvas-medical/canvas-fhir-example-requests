@@ -7,7 +7,7 @@ meta {
 get {
   url: {{base_url}}/Observation?patient=Patient/{{patient_id}}
   body: json
-  auth: bearer
+  auth: inherit
 }
 
 params:query {
