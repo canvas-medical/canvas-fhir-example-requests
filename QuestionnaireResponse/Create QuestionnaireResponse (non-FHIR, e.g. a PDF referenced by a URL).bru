@@ -1,0 +1,49 @@
+meta {
+  name: Create QuestionnaireResponse (non-FHIR, e.g. a PDF referenced by a URL)
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/QuestionnaireResponse
+  body: json
+  auth: inherit
+}
+
+auth:bearer {
+  token: {{fhir_access_token}}
+}
+
+body:json {
+  {
+    "resourceType": "QuestionnaireResponse",
+    "_questionnaire": {
+      "extension": [
+        {
+          "url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-extension-questionnaire-uri",
+          "valueUri": "https://hitchhikers.fandom.com/wiki/Ultimate_Question"
+        }
+      ]
+    },
+    "status": "completed",
+    "subject": {
+      "reference": "Patient/{{patient_id}}"
+    },
+    "authored": "2026-03-09T16:33:00.000Z",
+    "item": [
+      {
+        "linkId": "1",
+        "text": "What is the answer to the ultimate question of life, the universe, and everything?",
+        "answer": [
+          {
+            "valueString": "42"
+          }
+        ]
+      }
+    ]
+  }
+}
+
+docs {
+  QuestionnaireResponse creation depends on the format of the Questionnaire resource. You should first Read the Questionnaire and extract the link-id and answer codes from there.
+}
